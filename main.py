@@ -57,8 +57,8 @@ msg_by = ["пока", "выход"]
 @bot.labeler.raw_event(GroupEventType.GROUP_JOIN, dataclass=GroupTypes.GroupJoin)
 async def group_message_new(event: GroupTypes.GroupJoin):
         try:
-                bot.api.messages.send(
-                        user_id=event.object.user_id,
+                await bot.api.messages.send(
+                        peer_id=event.object.user_id,
                         attachment="video-209400635_456239053",
                         random_id=0
                 )
