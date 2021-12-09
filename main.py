@@ -1,12 +1,10 @@
 import random
 import json
-import asyncio
 from vkbottle.bot import Bot, Message
 from vkbottle import Keyboard, KeyboardButtonColor, Text, OpenLink, Location, EMPTY_KEYBOARD
 from vkbottle import GroupEventType, GroupTypes, VKAPIError
 from vkbottle import BaseStateGroup
 from vkbottle import CtxStorage
-from vkbottle import VoiceMessageUploader
 from time import sleep
 
 bot = Bot(token='b067dde30ea3aedcd5c4319c6341d9129aa8a9e5be63d4d224c6dec4451febbfd361d0060276f4f9b02b7')
@@ -51,14 +49,21 @@ msg_vkus = ["вкусы", "вкус"]
 msg_price = ["цены", "цена", "стоимость"]
 msg_order = ["заказать", "заказ"]
 msg_gachi = ["гачи", "гачи анекдот", "анекдот"]
-msg_bad = ["долбаёб", "пиздюк", "дурак", "пидр", "долбаеб", "дибил", "пидарас", "дебил", "тупой"]
+msg_bad = ["долбаёб", "пиздюк", "дурак", "пидр", "долбаеб", "дибил", "пидарас", "дебил"]
 msg_nah = ["пошёл нахуй", "пошел нахуй", "нахуй", "иди нахуй"]
 msg_good = ["хорошо", "спасибо", "хаха", "ахах", "хах", "ахаха"]
 msg_by = ["пока", "выход"]
 
-# @bot.labeler.raw_event(GroupEventType.MESSAGE_NEW, dataclass=GroupTypes.MessageNew)
-# async def group_message_new(event: GroupTypes.MessageNew):
-#         await bot.state_dispenser.set(event.object.message.from_id, StateAllMenu.START)
+@bot.labeler.raw_event(GroupEventType.GROUP_JOIN, dataclass=GroupTypes.GroupJoin)
+async def group_message_new(event: GroupTypes.GroupJoin):
+        try:
+                bot.api.messages.send(
+                        peer_id=event.object.user_id,
+                        attachment="video-209400635_456239053",
+                        random_id=0
+                )
+        except VKAPIError(30):
+                pass
 
 #=============================================================================================================================================================================================================================================================
 #Меню разработчика
