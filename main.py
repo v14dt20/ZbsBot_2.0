@@ -62,6 +62,11 @@ async def group_message_new(event: GroupTypes.GroupJoin):
                         attachment="video-209400635_456239053",
                         random_id=0
                 )
+                await bot.api.messages.send(
+                        peer_id=event.object.user_id,
+                        message="Спасибо за подписку, для запуска бота напишите \"Привет\"",
+                        random_id=0
+                )
         except VKAPIError(30):
                 pass
 
