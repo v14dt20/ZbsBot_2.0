@@ -65,6 +65,16 @@ async def group_message_new(event: GroupTypes.GroupJoin):
         except VKAPIError(30):
                 pass
 
+@bot.labeler.raw_event(GroupEventType.GROUP_LEAVE, dataclass=GroupTypes.GroupLeave)
+async def group_message_new(event: GroupTypes.GroupLeave):
+        try:
+                await bot.api.messages.send(
+                        peer_id=event.object.user_id,
+                        attachment="video-209400635_456239051",
+                        random_id=0
+                )
+        except VKAPIError(30):
+                pass        
 #=============================================================================================================================================================================================================================================================
 #Меню разработчика
 #=============================================================================================================================================================================================================================================================
