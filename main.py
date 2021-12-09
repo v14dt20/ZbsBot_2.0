@@ -58,7 +58,7 @@ msg_by = ["пока", "выход"]
 async def group_message_new(event: GroupTypes.GroupJoin):
         try:
                 bot.api.messages.send(
-                        peer_id=event.object.user_id,
+                        user_id=event.object.user_id,
                         attachment="video-209400635_456239053",
                         random_id=0
                 )
